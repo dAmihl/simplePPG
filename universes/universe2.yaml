@@ -1,59 +1,39 @@
-num_nodes: 5
+num_nodes: 10
 objects:
     -   name: "Lever"
         states:
-            -   name: "Unused"
+            -   name: "0"
                 default: true
-            -   name: "Used"
-        is_template: false
-        exact_number: 1
+            -   name: "1"
+        is_template: true
+        min_number: 1
+        max_number: 4
         events:
             - name: "UseLever"
               reversible: true
         transitions:
             -   event: "UseLever"
-                from: "Unused"
-                to: "Used"
+                from: "0"
+                to: "1"
                 
-    -   name: "Door"
-        states:
-            -   name: "Closed"
-                default: true
-            -   name: "Open"
-        events:
-            - name: "UseDoor"
-              reversible: true
-        transitions:
-            -   event: "UseDoor"
-                from: "Closed"
-                to: "Open"
     -   name: "TristateLever"
+        is_template: true
+        min_number: 1
+        max_number: 4
         states:
-            -   name: "Left"
-                default: true
-            -   name: "Top"
-            -   name: "Right"
+            -   name: "0"
+            -   name: "1"
+            -   name: "2"
         events:
             - name: "UseTristate"
               reversible: false
         transitions:
             -   event: "UseTristate"
-                from: "Left"
-                to: "Top"
+                from: "0"
+                to: "1"
             -   event: "UseTristate"
-                from: "Top"
-                to:     "Right"
+                from: "1"
+                to:     "2"
             -   event: "UseTristate"
-                from: "Right"
-                to: "Left"
-rules:
-    - lh: 
-        name: "Lever"
-      rh:
-        name: "Door"
-      type: "STRICT_BEFORE"
-    - lh: 
-        name: "TristateLever"
-      rh:
-        name: "Door"
-      type: "STRICT_BEFORE"
+                from: "2"
+                to: "0"
