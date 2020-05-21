@@ -1,0 +1,59 @@
+num_nodes: 5
+objects:
+    -   name: "Lever"
+        states:
+            -   name: "Unused"
+                default: true
+            -   name: "Used"
+        is_template: false
+        exact_number: 1
+        events:
+            - name: "UseLever"
+              reversible: true
+        transitions:
+            -   event: "UseLever"
+                from: "Unused"
+                to: "Used"
+                
+    -   name: "Door"
+        states:
+            -   name: "Closed"
+                default: true
+            -   name: "Open"
+        events:
+            - name: "UseDoor"
+              reversible: true
+        transitions:
+            -   event: "UseDoor"
+                from: "Closed"
+                to: "Open"
+    -   name: "TristateLever"
+        states:
+            -   name: "Left"
+                default: true
+            -   name: "Top"
+            -   name: "Right"
+        events:
+            - name: "UseTristate"
+              reversible: false
+        transitions:
+            -   event: "UseTristate"
+                from: "Left"
+                to: "Top"
+            -   event: "UseTristate"
+                from: "Top"
+                to:     "Right"
+            -   event: "UseTristate"
+                from: "Right"
+                to: "Left"
+rules:
+    - lh: 
+        name: "Lever"
+      rh:
+        name: "Door"
+      type: "STRICT_BEFORE"
+    - lh: 
+        name: "TristateLever"
+      rh:
+        name: "Door"
+      type: "STRICT_BEFORE"

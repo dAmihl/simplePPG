@@ -1,0 +1,118 @@
+objects:
+    -   name: "Schalter1"
+        states:
+            -   name: "Unbenutzt"
+                default: true
+            -   name: "Benutzt"
+        is_template: true
+        exact_number: 1
+        events:
+            - name: "BenutzeSchalter"
+              reversible: true
+        transitions:
+            -   event: "BenutzeSchalter"
+                from: "Unbenutzt"
+                to: "Benutzt"
+                
+    -   name: "Tuer1"
+        states:
+            -   name: "Geschlossen"
+                default: true
+            -   name: "Offen"
+        events:
+            - name: "BenutzeTuer"
+              reversible: true
+        transitions:
+            -   event: "BenutzeTuer"
+                from: "Geschlossen"
+                to: "Offen"
+                
+    -   name: "CursedKey"
+        states:
+            -   name: "NichtInventar"
+                default: true
+            -   name: "Inventar"
+        events:
+            - name: "TakeOrDrop"
+              reversible: true
+        transitions:
+            -   event: "TakeOrDrop"
+                from: "NichtInventar"
+                to: "Inventar"
+    -   name: "CursedDoor"
+        states:
+            -   name: "Cursed"
+                default: true
+            -   name: "NotCursed"
+        events:
+            - name: "RemoveCurse"
+              reversible: false
+        transitions:
+            -   event: "RemoveCurse"
+                from: "Cursed"
+                to: "NotCursed"
+    -   name: "Schalter2"
+        states:
+            -   name: "Aus"
+                default: true
+            -   name: "Ein"
+        events:
+            - name: "BenutzeSchalter"
+        transitions:
+            -   event: "BenutzeSchalter"
+                from: "Aus"
+                to: "Ein"
+                
+    -   name: "Schrank1"
+        states:
+            -   name: "Geschlossen"
+                default: true
+            -   name: "Offen"
+        events:
+            - name: "BenutzeSchrank"
+        transitions:
+            -   event: "BenutzeSchrank"
+                from: "Geschlossen"
+                to: "Offen"
+                
+    -   name: "TristateSchalter"
+        states:
+            -   name: "0"
+                default: true
+            -   name: "1"
+            -   name: "2"
+        events:
+            - name: "BenutzeEin"
+              reversible: false
+            - name: "BenutzeAus"
+              reversible: false
+        transitions:
+            -   event: "BenutzeEin"
+                from: "0"
+                to: "1"
+            -   event: "BenutzeEin"
+                from: "1"
+                to:     "2"
+            -   event: "BenutzeAus"
+                from: "1"
+                to: "0"
+            -   event: "BenutzeAus"
+                from: "2"
+                to:     "1"
+
+rules:
+    - lh: 
+        name: "Schrank1"
+        state: "Offen"
+      rh:
+        name: "Schalter2"
+      type: "BEFORE"
+    - rh:
+        name: "CursedKey"
+        state: "Inventar"
+      lh: 
+        name: "CursedDoor"
+        state: "NotCursed"
+      type: "AFTER"
+      
+                
