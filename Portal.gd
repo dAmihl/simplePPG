@@ -1,9 +1,9 @@
 extends Area2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var interaction_methods = {
+	"Enter" : "on_use"
+}
 
 var active:bool = false
 
@@ -19,6 +19,10 @@ func set_active(new_active:bool):
 		$AnimatedSprite.play("inactive")
 
 func on_use():
-
 	if active:
 		find_parent("PPGManager").reload()
+
+
+
+func get_interaction_methods():
+	return self.interaction_methods

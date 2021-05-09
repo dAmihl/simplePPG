@@ -8,6 +8,7 @@ onready var ppg_door = preload("res://PPG_Door.tscn")
 onready var ppg_lever = preload("res://PPGLever.tscn")
 onready var ppg_tristate = preload("res://PPGTristate.tscn")
 onready var ppg_object = preload("res://PPGObject.tscn")
+onready var ppg_key = preload("res://PPGKey.tscn")
 
 signal ppg_no_effect(obj_name)
 signal ppg_state_change(obj_name, new_state)
@@ -74,6 +75,8 @@ func interpret_puzzle(root: PPGNodeRef):
 			node_type = ppg_lever
 		elif tpl_name == "TristateLever":
 			node_type = ppg_tristate
+		elif tpl_name == "Key":
+			node_type = ppg_key
 		
 		if node_type != ppg_object:
 			var tmpGdNode = node_type.instance()

@@ -67,6 +67,8 @@ func update_interaction_menu():
 	update_currently_selected(-1,currently_selected_index)
 
 func get_currently_selected_methodname():
+	if self.interactions.size() == 0:
+		return false
 	var method_name = self.interactions.values()[currently_selected_index]
 	print("getting method name "+method_name)
 	return method_name

@@ -36,4 +36,32 @@ objects:
                 to:     "2"
             -   event: "UseTristate"
                 from: "2"
-                to: "0"
+                to: "0"     
+    -   name: "Key"
+        is_template: false
+        min_number: 1
+        max_number: 1
+        states:
+            -   name: "World"
+            -   name: "Inventory"
+        events:
+            - name: "TakeKey"
+              reversible: false
+        transitions:
+            -   event: "TakeKey"
+                from: "World"
+                to: "Inventory"
+    -   name: "Door"
+        is_template: false
+        min_number: 1
+        max_number: 1
+        states:
+            -   name: "Closed"
+            -   name: "Open"
+        events:
+            - name: "UseDoor"
+              reversible: true
+        transitions:
+            -   event: "UseDoor"
+                from: "Closed"
+                to: "Open"

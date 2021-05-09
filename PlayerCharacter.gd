@@ -19,7 +19,7 @@ func _ready():
 	fsm.connect("_on_transition", self, "_on_fsm_transition")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	
 	var collider = $RayCast2D.get_collider()
 	if collider != use_object: # new collision
@@ -65,7 +65,8 @@ func _process(delta):
 			fsm.enter_state("idle")
 		
 		if fsm.is_state("walk") || fsm.is_state("sprint"):
-			self.position = self.position + Vector2(move_dir * actual_speed * delta, 0)
+			move_and_collide(Vector2(move_dir * actual_speed * delta, 0))
+			#self.position = self.position + Vector2(move_dir * actual_speed * delta, 0)
 	pass
 
 

@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 signal ppg_object_used(obj_name, event_name)
 
