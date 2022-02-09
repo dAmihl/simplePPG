@@ -1,22 +1,21 @@
-extends KinematicBody2D
-
+extends CharacterBody2D
 
 var move_dir:int = 0
 var move_speed:float = 120.0
 var sprint_speed:float = 180.0
 
-onready var fsm: StateMachine = StateMachine.new()
+@onready var fsm: StateMachine = StateMachine.new()
 
-onready var info_text_scn = preload("res://InfoText.tscn")
+@onready var info_text_scn = preload("res://InfoText.tscn")
 
 
 var use_object:Node2D
 
 func _ready():
 	fsm.enter_state("idle")
-	fsm.connect("_on_enter_state", self, "_on_fsm_enter_state")
-	fsm.connect("_on_exit_state", self, "_on_fsm_exit_state")
-	fsm.connect("_on_transition", self, "_on_fsm_transition")
+	fsm._on_enter_state.connect(self._on_fsm_enter_state);
+	fsm._on_exit_state.connect(self._on_fsm_exit_state);
+	fsm._on_transition.connect(self._on_fsm_transition);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

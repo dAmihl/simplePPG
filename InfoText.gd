@@ -1,7 +1,7 @@
 extends Node2D
 
-export var offset:Vector2 = Vector2.ZERO
-onready var original_pos:Vector2 = self.position
+@export var offset:Vector2 = Vector2.ZERO
+@onready var original_pos:Vector2 = self.position
 
 var duration:float = 1.5
 
@@ -23,5 +23,5 @@ func set_text(text:String):
 func start():
 	set_process(true)
 	$AnimationPlayer.play("float")
-	yield(get_tree().create_timer(self.duration), "timeout")
+	await(get_tree().create_timer(self.duration))
 	queue_free()

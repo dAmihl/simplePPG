@@ -4,7 +4,7 @@ var interactions:Dictionary = {}
 
 var currently_selected_index = 0
 
-onready var menu_container = $TextureRect/VBoxContainer
+@onready var menu_container = $TextureRect/VBoxContainer
 var menu_item_scn = preload("res://InteractionMenuItem.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -24,8 +24,8 @@ func clear_interactions():
 	update_interaction_menu()
 	self.visible = false
 
-func set_interaction_methods(var interactions):
-	self.interactions = interactions
+func set_interaction_methods(new_interactions):
+	self.interactions = new_interactions
 	self.currently_selected_index = 0
 	if self.interactions.size() > 0:
 		self.visible = true

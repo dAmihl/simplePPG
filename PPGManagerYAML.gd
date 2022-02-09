@@ -4,11 +4,11 @@ var ppg: GdPPG
 
 var puzzle_done = false
 
-onready var ppg_door = preload("res://PPG_Door.tscn")
-onready var ppg_lever = preload("res://PPGLever.tscn")
-onready var ppg_tristate = preload("res://PPGTristate.tscn")
-onready var ppg_object = preload("res://PPGObject.tscn")
-onready var ppg_key = preload("res://PPGKey.tscn")
+@onready var ppg_door = preload("res://PPG_Door.tscn")
+@onready var ppg_lever = preload("res://PPGLever.tscn")
+@onready var ppg_tristate = preload("res://PPGTristate.tscn")
+@onready var ppg_object = preload("res://PPGObject.tscn")
+@onready var ppg_key = preload("res://PPGKey.tscn")
 
 signal ppg_no_effect(obj_name)
 signal ppg_state_change(obj_name, new_state)
@@ -38,13 +38,13 @@ func puzzle_finished():
 func load_new_puzzle():
 	ppg = GdPPG.new()
 	spawn_offset = Vector2.ZERO
-	ppg.connect("ppg_puzzle_complete", self, "on_puzzle_complete")
-	ppg.connect("ppg_event_no_effect", self, "on_puzzle_callback_no_effect")
-	ppg.connect("ppg_node_active", self, "on_puzzle_callback_node_active")
-	ppg.connect("ppg_node_complete", self, "on_puzzle_callback_node_complete")
-	ppg.connect("ppg_node_incomplete", self, "on_puzzle_callback_node_inactive")
-	ppg.connect("ppg_object_state_change", self, "on_puzzle_callback_object_state_change")
-	
+	ppg.ppg_puzzle_complete.connect(self.on_puzzle_complete);
+	ppg.ppg_event_no_effect.connect(self.on_puzzle_callback_no_effect);
+	ppg.ppg_node_active.connect(self.on_puzzle_callback_node_active);
+	ppg.ppg_node_complete.connect(self.on_puzzle_callback_node_complete);
+	ppg.ppg_node_incomplete.connect(self.on_puzzle_callback_node_inactive);
+	ppg.ppg_object_state_change.connect(self.on_puzzle_callback_object_state_change);
+
 	var file = File.new()
 	file.open("universes/universe2.yaml", File.READ)
 	var content = file.get_as_text()
