@@ -9,6 +9,38 @@
 [ext_resource type="Script" path="res://InteractionMenu.gd" id="7"]
 [ext_resource type="Texture2D" uid="uid://ccshg7alrk7mx" path="res://assets/interaction_menu_border.png" id="8"]
 
+[sub_resource type="AtlasTexture" id="16"]
+atlas = ExtResource( "2" )
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="17"]
+atlas = ExtResource( "2" )
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="18"]
+atlas = ExtResource( "2" )
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="19"]
+atlas = ExtResource( "2" )
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="1"]
+atlas = ExtResource( "2" )
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource( "2" )
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource( "2" )
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="4"]
+atlas = ExtResource( "2" )
+region = Rect2(96, 128, 32, 32)
+
 [sub_resource type="AtlasTexture" id="5"]
 atlas = ExtResource( "2" )
 region = Rect2(0, 64, 32, 32)
@@ -53,50 +85,8 @@ region = Rect2(160, 96, 32, 32)
 atlas = ExtResource( "2" )
 region = Rect2(192, 96, 32, 32)
 
-[sub_resource type="AtlasTexture" id="16"]
-atlas = ExtResource( "2" )
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="17"]
-atlas = ExtResource( "2" )
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="18"]
-atlas = ExtResource( "2" )
-region = Rect2(64, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="19"]
-atlas = ExtResource( "2" )
-region = Rect2(96, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="1"]
-atlas = ExtResource( "2" )
-region = Rect2(0, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="2"]
-atlas = ExtResource( "2" )
-region = Rect2(32, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="3"]
-atlas = ExtResource( "2" )
-region = Rect2(64, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="4"]
-atlas = ExtResource( "2" )
-region = Rect2(96, 128, 32, 32)
-
 [sub_resource type="SpriteFrames" id="20"]
 animations = [{
-"frames": [SubResource( "5" ), SubResource( "6" ), SubResource( "7" ), SubResource( "8" )],
-"loop": true,
-"name": &"walk",
-"speed": 10.0
-}, {
-"frames": [SubResource( "9" ), SubResource( "10" ), SubResource( "11" ), SubResource( "12" ), SubResource( "13" ), SubResource( "14" ), SubResource( "15" )],
-"loop": true,
-"name": &"shrug",
-"speed": 4.0
-}, {
 "frames": [SubResource( "16" ), SubResource( "17" ), SubResource( "18" ), SubResource( "19" )],
 "loop": true,
 "name": &"idle",
@@ -106,14 +96,20 @@ animations = [{
 "loop": true,
 "name": &"use",
 "speed": 5.0
+}, {
+"frames": [SubResource( "5" ), SubResource( "6" ), SubResource( "7" ), SubResource( "8" )],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}, {
+"frames": [SubResource( "9" ), SubResource( "10" ), SubResource( "11" ), SubResource( "12" ), SubResource( "13" ), SubResource( "14" ), SubResource( "15" )],
+"loop": true,
+"name": &"shrug",
+"speed": 4.0
 }]
 
 [sub_resource type="RectangleShape2D" id="21"]
 size = Vector2(80, 80)
-
-[sub_resource type="AtlasTexture" id="22"]
-atlas = ExtResource( "4" )
-region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="23"]
 atlas = ExtResource( "4" )
@@ -127,16 +123,20 @@ region = Rect2(32, 32, 32, 32)
 atlas = ExtResource( "4" )
 region = Rect2(64, 32, 32, 32)
 
+[sub_resource type="AtlasTexture" id="22"]
+atlas = ExtResource( "4" )
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="26"]
 animations = [{
-"frames": [SubResource( "22" )],
-"loop": true,
-"name": &"inactive",
-"speed": 5.0
-}, {
 "frames": [SubResource( "23" ), SubResource( "24" ), SubResource( "25" )],
 "loop": true,
 "name": &"active",
+"speed": 5.0
+}, {
+"frames": [SubResource( "22" )],
+"loop": true,
+"name": &"inactive",
 "speed": 5.0
 }]
 
@@ -156,14 +156,16 @@ script = ExtResource( "3" )
 scale = Vector2(4, 4)
 frames = SubResource( "20" )
 animation = &"idle"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayerCharacter"]
 shape = SubResource( "21" )
 
 [node name="RayCast2D" type="RayCast2D" parent="World/PlayerCharacter"]
-collision_mask = 2
+target_position = Vector2(0, 1)
+collision_mask = 3
+hit_from_inside = true
 collide_with_areas = true
 
 [node name="InteractionMenu" type="Control" parent="World/PlayerCharacter"]
@@ -203,7 +205,8 @@ position = Vector2(632.141, 20.168)
 
 [node name="Portal" type="Area2D" parent="World/PPGManager/PortalPosition"]
 position = Vector2(5.04199, -11.9747)
-collision_layer = 2
+collision_layer = 3
+collision_mask = 3
 script = ExtResource( "6" )
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="World/PPGManager/PortalPosition/Portal"]

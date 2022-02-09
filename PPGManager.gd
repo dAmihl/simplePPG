@@ -5,12 +5,12 @@ extends Node2D
 # var a = 2
 # var b = "text"
 var ppg_object = preload("res://ppg/ppg_object.gd")
-var ppg_node = preload("res://ppg/ppg_node.gd")
-var ppg_node_lever = preload("res://ppg_lever.gd")
+var ppg_node = preload("res://ppg/PPG_Node.gd")
+var ppg_node_lever = preload("res://PPG_Lever.gd")
 var ppg_node_door = preload("res://ppg_door.gd")
-var ppg_node_key = preload("res://ppg_key.gd")
-var ppg_node_button = preload("res://ppg_button.gd")
-var ppg_node_compass = preload("res://ppg_compass.gd")
+var ppg_node_key = preload("res://PPG_Key.gd")
+var ppg_node_button = preload("res://PPG_Button.gd")
+var ppg_node_compass = preload("res://PPG_Compass.gd")
 var ppg_rule = preload("res://ppg/ppg_rule.gd")
 var object_event_map: Dictionary
 

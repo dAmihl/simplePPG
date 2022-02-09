@@ -1,3 +1,3 @@
 res://Main.tscn
-res://PPGManagerYAML.gd
-res://PlayerCharacter.gd
+res://PPGManager.gd
+res://PPGObject.tscn

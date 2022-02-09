@@ -8,7 +8,6 @@ var sprint_speed:float = 180.0
 
 @onready var info_text_scn = preload("res://InfoText.tscn")
 
-
 var use_object:Node2D
 
 func _ready():

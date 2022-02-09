@@ -61,7 +61,7 @@ func update_interaction_menu():
 		menu_container.remove_child(c)
 		c.queue_free()
 	for interaction in self.interactions.keys():
-		var tmp_menu_item = menu_item_scn.instance()
+		var tmp_menu_item = menu_item_scn.instantiate()
 		tmp_menu_item.set_text(interaction)
 		menu_container.add_child(tmp_menu_item)
 	update_currently_selected(-1,currently_selected_index)
