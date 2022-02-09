@@ -1,6 +1,3 @@
-res://InfoText.gd
-res://InteractionMenu.gd
 res://Main.tscn
 res://PPGManagerYAML.gd
 res://PlayerCharacter.gd
-res://Portal.gd

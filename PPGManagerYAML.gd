@@ -79,8 +79,9 @@ func interpret_puzzle(root: PPGNodeRef):
 			node_type = ppg_key
 		
 		if node_type != ppg_object:
-			var tmpGdNode = node_type.instance()
-			tmpGdNode.connect("ppg_object_used", self, "on_ppg_object_used")
+			var tmpGdNode = node_type.instantiate()
+			tmpGdNode.ppg_object_used.connect(self.on_ppg_object_used);
+
 			tmpGdNode.set_obj_name(obj_name)
 			tmpGdNode.set_tpl_name(tpl_name)
 			tmpGdNode.position += spawn_offset

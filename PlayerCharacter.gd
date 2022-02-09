@@ -70,7 +70,7 @@ func _physics_process(delta):
 
 
 func display_info_text(info_text:String, duration:float = 1.0)->void:
-	var infoText = info_text_scn.instance()
+	var infoText = info_text_scn.instantiate()
 	infoText.set_text(info_text)
 	infoText.set_duration(duration)
 	self.add_child(infoText)
