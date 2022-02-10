@@ -69,13 +69,13 @@ func interpret_puzzle(root: PPGNodeRef):
 	# The node is not yet created
 	
 	if !self.obj_name_node_map.has(obj_name):
-		if tpl_name == "Door":
+		if tpl_name.begins_with("Door"):
 			node_type = ppg_door
-		elif tpl_name == "Lever":
+		elif tpl_name.begins_with("Lever"):
 			node_type = ppg_lever
-		elif tpl_name == "TristateLever":
+		elif tpl_name.begins_with("TristateLever"):
 			node_type = ppg_tristate
-		elif tpl_name == "Key":
+		elif tpl_name.begins_with("Key"):
 			node_type = ppg_key
 		
 		if node_type != ppg_object:

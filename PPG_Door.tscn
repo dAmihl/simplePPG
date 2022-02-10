@@ -3,10 +3,6 @@
 [ext_resource path="res://PPG_Door.gd" type="Script" id=2]
 [ext_resource path="res://assets/door.png" type="Texture" id=3]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 32, 32, 32 )
-
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 64, 32, 32 )
@@ -15,14 +11,13 @@ region = Rect2( 0, 64, 32, 32 )
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 32, 32 )
 
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 32, 32, 32 )
+
 [sub_resource type="SpriteFrames" id=4]
 resource_local_to_scene = true
 animations = [ {
-"frames": [ SubResource( 1 ) ],
-"loop": true,
-"name": "unlocked",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 2 ) ],
 "loop": true,
 "name": "open",
@@ -31,6 +26,11 @@ animations = [ {
 "frames": [ SubResource( 3 ) ],
 "loop": true,
 "name": "closed",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "unlocked",
 "speed": 5.0
 } ]
 
@@ -58,3 +58,4 @@ position = Vector2( 20, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource( 6 )
+disabled = true
