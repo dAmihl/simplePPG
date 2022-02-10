@@ -9,6 +9,22 @@
 [ext_resource path="res://InteractionMenu.gd" type="Script" id=7]
 [ext_resource path="res://assets/interaction_menu_border.png" type="Texture" id=8]
 
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 32, 32, 32 )
+
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 128, 32, 32 )
@@ -69,24 +85,13 @@ region = Rect2( 160, 96, 32, 32 )
 atlas = ExtResource( 2 )
 region = Rect2( 192, 96, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 32, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 2 )
-region = Rect2( 32, 32, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 2 )
-region = Rect2( 64, 32, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 2 )
-region = Rect2( 96, 32, 32, 32 )
-
 [sub_resource type="SpriteFrames" id=20]
 animations = [ {
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": true,
+"name": "idle",
+"speed": 3.0
+}, {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "use",
@@ -101,19 +106,10 @@ animations = [ {
 "loop": true,
 "name": "shrug",
 "speed": 4.0
-}, {
-"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
-"loop": true,
-"name": "idle",
-"speed": 3.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 40, 40 )
-
-[sub_resource type="AtlasTexture" id=22]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 4 )
@@ -127,16 +123,20 @@ region = Rect2( 32, 32, 32, 32 )
 atlas = ExtResource( 4 )
 region = Rect2( 64, 32, 32, 32 )
 
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 32 )
+
 [sub_resource type="SpriteFrames" id=26]
 animations = [ {
-"frames": [ SubResource( 22 ) ],
-"loop": true,
-"name": "inactive",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
 "loop": true,
 "name": "active",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 22 ) ],
+"loop": true,
+"name": "inactive",
 "speed": 5.0
 } ]
 
@@ -156,7 +156,6 @@ script = ExtResource( 3 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 20 )
 animation = "idle"
-frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayerCharacter"]
@@ -229,6 +228,7 @@ playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/PPGManager/PortalPosition/Portal"]
 shape = SubResource( 27 )
+
 [connection signal="animation_finished" from="World/PlayerCharacter/AnimatedSprite" to="World/PlayerCharacter" method="_on_AnimatedSprite_animation_finished"]
 [connection signal="ppg_no_effect" from="World/PPGManager" to="World/PlayerCharacter" method="_on_PPGManager_ppg_no_effect"]
 [connection signal="ppg_node_active" from="World/PPGManager" to="World/PlayerCharacter" method="_on_PPGManager_ppg_node_active"]

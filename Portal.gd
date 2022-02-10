@@ -6,7 +6,6 @@ var interaction_methods = {
 }
 
 var active:bool = false
-var interaction_methods
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
